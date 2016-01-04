@@ -8,9 +8,9 @@ Comes with gulp, gulp has a production task that concatenates -> annotates -> mi
 
 Also has a watch that watches for changes to tests, css, html files. 
 
-Tests -> run karma,
-Scss -> process and concat into main.css
-HTML -> process and place into template cache
+* `Tests` -> run karma,
+* `Scss` -> process and concat into main.css,
+* `HTML` -> process and place into template cache
 
 ##NodeJS
 
