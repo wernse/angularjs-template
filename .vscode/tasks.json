@@ -4,6 +4,14 @@
     "version": "0.1.0",
     "command": "gulp",
     "isShellCommand": true,
-    "args": ["--no-color"],
-    "showOutput": "always"
+    "args": [
+        "--no-color"
+    ],
+    "showOutput": "always",
+    "tasks": [
+        {
+            "taskName": "watch",
+            "isBuildCommand": true
+        }
+    ]
 }

@@ -1,1 +1,0 @@
-var metrics = angular.module('metrics', [])
