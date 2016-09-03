@@ -1,18 +1,20 @@
-(function () {
-    "use strict";
+(function() {
+    'use strict';
 
-    angular.module("upload", [])
+    angular.module('upload', [
+            'ngFileUpload'
+        ])
         .config(routeConfig);
 
-    routeConfig.$inject = ["$stateProvider"];
+    routeConfig.$inject = ['$stateProvider'];
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state("parent.upload", {
-                url: "/",
-                templateUrl: "upload/upload.html",
-                controller: "UploadController",
-                controllerAs: "upload"
+            .state('parent.upload', {
+                url: '/',
+                templateUrl: 'upload/upload.html',
+                controller: 'UploadController',
+                controllerAs: 'upload'
             });
     }
-} ());
+}());

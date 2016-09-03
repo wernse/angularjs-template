@@ -1,5 +1,46 @@
-@import "../../content/css/siteVariables.scss";
+@import '../../content/css/siteVariables.scss';
+@mixin vertical-align($position) {
+    -webkit-box-align: $position;
+    -webkit-align-items: $position;
+    -moz-box-align: $position;
+    -ms-flex-align: $position;
+    align-items: $position;
+    //for old broswers
+    -webkit-box-pack: $position;
+    -moz-box-pack: $position;
+    -ms-flex-pack: $position;
+    -webkit-justify-content: $position;
+    justify-content: $position;
+}
 
-body{
+.background {
+    background-color: $background;
+    min-height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    @include vertical-align(center);
+}
+
+#upload_container {
     background-color: $white;
+    text-align: center;
+    width: 80%;
+    margin: 0px auto;
+    height: 50%;
+    padding: 200px;
+    .upload_button {
+        border: 2px solid $black;
+        padding: 10px 10px;
+        margin: 2px;
+        display: inline-block;
+    }
+    .file {
+        position: fixed;
+        top: -1000px;
+    }
 }

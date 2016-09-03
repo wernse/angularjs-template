@@ -1,74 +1,105 @@
-(function(){
-  "use strict";
+(function() {
+  'use strict';
 
-  angular.module("app", [
-  "ui.router",
-  "upload"
-  ])
-  .config(routeConfig);
+  angular.module('app', [
+      'ui.router',
+      'upload'
+    ])
+    .config(routeConfig);
 
-  routeConfig.$inject = ["$stateProvider", "$urlRouterProvider", "$locationProvider"];
+  routeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-  function routeConfig ($stateProvider, $urlRouterProvider, $locationProvider){
+  function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
     $locationProvider.html5Mode(true);
-      $urlRouterProvider.otherwise("/");
-      $stateProvider
-        .state("parent", {
-            url: "",
-            template: "<div ui-view></div>",
-            abstract: true
-        });
+    $urlRouterProvider.otherwise('/');
+    $stateProvider
+      .state('parent', {
+        url: '',
+        template: '<div ui-view></div>',
+        abstract: true
+      });
   }
 
 })();
+(function() {
+    'use strict';
 
-(function () {
-    "use strict";
-
-    angular.module("upload", [])
+    angular.module('upload', [
+            'ngFileUpload'
+        ])
         .config(routeConfig);
 
-    routeConfig.$inject = ["$stateProvider"];
+    routeConfig.$inject = ['$stateProvider'];
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state("parent.upload", {
-                url: "/",
-                templateUrl: "upload/upload.html",
-                controller: "UploadController",
-                controllerAs: "upload"
+            .state('parent.upload', {
+                url: '/',
+                templateUrl: 'upload/upload.html',
+                controller: 'UploadController',
+                controllerAs: 'upload'
             });
     }
-} ());
-(function () {
-    "use strict";
+}());
+(function() {
+	'use strict';
 
-    angular.module("upload")
-		.controller("UploadController", UploadController);
+	angular.module('upload')
+		.controller('UploadController', UploadController);
 
-	//UploadController.$inject = ["$scope"];
+	UploadController.$inject = ['uploadFactory'];
 
-	function UploadController() {
+	function UploadController(uploadFactory) {
 		var ctrl = this;
-		console.log("hello from UploadController")
-		ctrl.test = "Hellossss";
+		console.log("hello this is me");
+		///--Functions--///
+		ctrl.uploadFile = uploadFile;
+		///--Variables--///
+
+		///--Function Definitions--///
+
+
+		function uploadFile(file) {
+			if (file == null)
+				return;
+			console.log("hellos", file)
+			uploadFactory.uploadFile(file).then(function(resp) {
+				console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+			}, function(resp) {
+				console.log('Error status: ' + resp.status);
+			}, function(evt) {
+				ctrl.progress = parseInt(100.0 * evt.loaded / evt.total);
+				console.log('progress: ' + ctrl.progress + '% ' + evt.config.data.file.name);
+			});
+		}
 	}
-	
-} ());
 
+}());
+(function() {
+	'use strict';
 
-(function(){
-	"use strict";
+	angular.module('upload')
+		.factory('uploadFactory', uploadFactory);
 
-	angular.module("upload")
-	.factory("UploadFactory",UploadFactory);
+	uploadFactory.$inject = ['Upload'];
 
-	function UploadFactory (){
-		var UploadFactory = {
-
+	function uploadFactory(Upload) {
+		var baseUrl = "api/upload"
+		var uploadFactory = {
+			uploadFile: uploadFile
 		};
 
-		return UploadFactory;
-	} 
+		return uploadFactory;
+
+		function uploadFile(file) {
+			// upload on file select or drop
+			return Upload.upload({
+				url: baseUrl,
+				data: {
+					file: file
+				}
+			});
+		}
+	}
 })();

@@ -1,5 +1,20 @@
-<div class="container">
-    Upload a ZIP file
-s
+<div class='background'>
+    <div id='upload_container'>
+        <h4>UPLOAD A ZIP FILE</h4>
+        <div>
+            {{upload.progress}}
+            <uib-progressbar max='max' value='upload.progress'>
+                <span style='color:white; white-space:nowrap;'>
+                    {{upload.progress}} / {{max}}
+                    </span>
+            </uib-progressbar>
 
-</div>
+            <label class='upload_button'>
+            <input type='file' class='file' 
+            ngf-select="upload.uploadFile($file)"
+            required/>
+            
+            <span>Upload a Zip File</span>
+        </label>
+        </div>
+    </div>

@@ -1,14 +1,27 @@
-(function(){
-	"use strict";
+(function() {
+	'use strict';
 
-	angular.module("upload")
-	.factory("UploadFactory",UploadFactory);
+	angular.module('upload')
+		.factory('uploadFactory', uploadFactory);
 
-	function UploadFactory (){
-		var UploadFactory = {
+	uploadFactory.$inject = ['Upload'];
 
+	function uploadFactory(Upload) {
+		var baseUrl = "api/upload"
+		var uploadFactory = {
+			uploadFile: uploadFile
 		};
 
-		return UploadFactory;
-	} 
+		return uploadFactory;
+
+		function uploadFile(file) {
+			// upload on file select or drop
+			return Upload.upload({
+				url: baseUrl,
+				data: {
+					file: file
+				}
+			});
+		}
+	}
 })();

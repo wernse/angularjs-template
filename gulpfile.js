@@ -33,45 +33,54 @@ var appFiles = [
 gulp.task('default', ['watch']);
 
 // configure the jshint task
-gulp.task('jshint', function () {
+gulp.task('jshint', function() {
   return gulp.src('app/**/*.js')
     .pipe(jshint({
-      "quotmark": "double",
       "latedef": "nofunc",
       "strict": true,
     }))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('styles', function () {
+gulp.task('styles', function() {
   gulp.src(['content/css/siteVariables.scss', 'app/**/*.scss'])
-    .pipe(sass({ style: 'compressed' }))
+    .pipe(sass({
+      style: 'compressed'
+    }))
     .pipe(concat('main.css'))
-    .pipe(minifyCss({ keepSpecialComments: 0 }))
+    .pipe(minifyCss({
+      keepSpecialComments: 0
+    }))
     .pipe(gulp.dest('content/css'))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 })
 
-gulp.task('templates', function () {
-   gulp.src('public/**/*.html')
-    .pipe(templateCache({ standalone: true }))
+gulp.task('templates', function() {
+  gulp.src('public/**/*.html')
+    .pipe(templateCache({
+      standalone: true
+    }))
     .pipe(gulp.dest('content/js'));
-    reload();
+  reload();
 });
 
-gulp.task('concatCore', function () {
+gulp.task('concatCore', function() {
   gulp.src(coreFiles)
     .pipe(concat(coreFileName))
     .pipe(gulp.dest(fileLocation + "/"));
 });
 
-gulp.task('concatApp', function () {
+gulp.task('concatApp', function() {
   gulp.src(appFiles)
     .pipe(concat(appFileName))
     .pipe(gulp.dest(fileLocation + "/"));
+  reload();
+
 })
 
-gulp.task('production', function () {
+gulp.task('production', function() {
   gulp.src(fileLocation + "/" + coreFileName)
     .pipe(stripDebug())
     .pipe(uglify())
@@ -83,7 +92,7 @@ gulp.task('production', function () {
 });
 
 // configure which files to watch and what tasks to use on file changes
-gulp.task('watch', function () {
+gulp.task('watch', function() {
   browserSync.init({
     proxy: "localhost:3000"
   })
@@ -93,6 +102,3 @@ gulp.task('watch', function () {
   gulp.watch(['content/js/*.js'], ['concatCore']);
   gulp.watch('app/**/*.html', ['templates']);
 });
-
-
-
