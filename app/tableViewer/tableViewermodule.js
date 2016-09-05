@@ -1,19 +1,17 @@
 (function() {
     'use strict';
 
-    angular.module('upload', [
-            'ngFileUpload'
-        ])
+    angular.module('tableViewer', [])
         .config(routeConfig);
 
     routeConfig.$inject = ['$stateProvider'];
 
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('parent.upload', {
+            .state('parent.table', {
                 url: '/',
-                templateUrl: '/upload/upload.html',
-                controller: 'uploadController',
+                templateUrl: 'upload/upload.html',
+                controller: 'UploadController',
                 controllerAs: 'upload'
             });
     }

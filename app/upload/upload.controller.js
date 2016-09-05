@@ -2,26 +2,30 @@
 	'use strict';
 
 	angular.module('upload')
-		.controller('UploadController', UploadController);
+		.controller('uploadController', uploadController);
 
-	UploadController.$inject = ['uploadFactory'];
+	uploadController.$inject = ['$state', 'uploadFactory', 'tableViewFactory'];
 
-	function UploadController(uploadFactory) {
+	function uploadController($state, uploadFactory, tableViewFactory) {
 		var ctrl = this;
-		console.log("hello this is me");
+		console.log('hello this is me uploadController');
 		///--Functions--///
 		ctrl.uploadFile = uploadFile;
 		///--Variables--///
-
+		ctrl.max = 100;
+		ctrl.progress = 0;
 		///--Function Definitions--///
-
-
 		function uploadFile(file) {
-			if (file == null)
+			if (file === null) {
 				return;
-			console.log("hellos", file)
+			}
+			console.log('hellos', file);
 			uploadFactory.uploadFile(file).then(function(resp) {
-				console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+				console.log('Success ', resp.config.data.file.name, 'uploaded. Response: ', resp.data);
+				tableViewFactory.setTable(resp.data);
+				$state.go('parent.tableView', {
+					fileName: resp.config.data.file.name
+				});
 			}, function(resp) {
 				console.log('Error status: ' + resp.status);
 			}, function(evt) {

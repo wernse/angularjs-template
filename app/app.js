@@ -3,14 +3,16 @@
 
   angular.module('app', [
       'ui.router',
-      'upload'
+      'ui.bootstrap',
+      'templates',
+      'upload',
+      'tableView'
     ])
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
   function routeConfig($stateProvider, $urlRouterProvider, $locationProvider) {
-
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
     $stateProvider

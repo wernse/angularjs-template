@@ -7,7 +7,7 @@
 	uploadFactory.$inject = ['Upload'];
 
 	function uploadFactory(Upload) {
-		var baseUrl = "api/upload"
+		var baseUrl = 'api/upload';
 		var uploadFactory = {
 			uploadFile: uploadFile
 		};

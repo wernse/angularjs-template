@@ -18,11 +18,11 @@ var coreFiles = [
   'content/js/angular-ui-router.js',
   'content/js/ng-file-upload.js',
   'content/js/ui-bootstrap-tpls-2.1.3.js',
-  'content/js/templates.js',
 ]
 
 var appFiles = [
   'app/app.js',
+  'content/js/templates.js',
   'app/**/*.module.js',
   'app/**/*.controller.js',
   'app/**/*.factory.js',
@@ -58,9 +58,10 @@ gulp.task('styles', function() {
 })
 
 gulp.task('templates', function() {
-  gulp.src('public/**/*.html')
+  gulp.src('app/**/*.html')
     .pipe(templateCache({
-      standalone: true
+      standalone: true,
+      root: '/'
     }))
     .pipe(gulp.dest('content/js'));
   reload();

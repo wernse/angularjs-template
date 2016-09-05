@@ -2,10 +2,9 @@
     <div id='upload_container'>
         <h4>UPLOAD A ZIP FILE</h4>
         <div>
-            {{upload.progress}}
-            <uib-progressbar max='max' value='upload.progress'>
+            <uib-progressbar max='upload.max' value='upload.progress'>
                 <span style='color:white; white-space:nowrap;'>
-                    {{upload.progress}} / {{max}}
+                    {{upload.progress}} / {{upload.max}}
                     </span>
             </uib-progressbar>
 
