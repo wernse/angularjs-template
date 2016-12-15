@@ -4,6 +4,7 @@
   angular.module('app', [
       'ui.router',
       'ui.bootstrap',
+      'ngMaterial',
       'templates',
       'upload',
       'tableView'

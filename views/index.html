@@ -5,15 +5,128 @@
   <meta charset="utf8">
   <base href="/">
   <title>SimQly</title>
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
   <link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
 </head>
 
 <body>
+
   <script src="production/core.js"></script>
   <script src="production/productionApp.js"></script>
   <div ui-view></div>
 
+
+  
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-aria.min.js"></script>
+ <md-content class="md-padding" >
+         <div layout="column" layout-gt-xs="row" >
+            <md-card flex flex-gt-xs="30">
+                <h2>Card title #1</h2>
+                <md-card-content>
+                    <p>Some content</p>
+                </md-card-content>
+            </md-card>
+            <md-card flex >
+                <h2>Card title #2</h2>
+                <md-card-content>
+                    <p>Some content</p>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+
+<div>
+  <p class="good" hide-gt-xs >Using <b>&lt;div layout="column" layout-gt-xs="row"&gt;</b> </p>
+  <p class="warn" hide show-gt-xs>
+    Using <b>&lt;div layout="column" layout-gt-xs="row"&gt;</b>
+    <br/>
+    <b>Wrong!</b>: Card #1 should be 30% width of the row!
+  </p>
+</div>
+
+  <md-content class="md-padding" >
+         <div layout="row"  layout-xs="column">
+            <md-card flex flex-gt-xs="30">
+                <h2>Card title #1</h2>
+                <md-card-content>
+                    <p>Some content</p>
+                </md-card-content>
+            </md-card>
+            <md-card flex >
+                <h2>Card title #2</h2>
+                <md-card-content>
+                    <p>Some content</p>
+                </md-card-content>
+            </md-card>
+        </div>
+    </md-content>
+
+<div>
+  <p class="good">Using <b>&lt;div layout='row' layout-xs="column" &gt;</b></p>
+</div>
+<div>
+    <fieldset class="standard">
+      <legend>Using &lt;ng-model&gt;</legend>
+      <div layout-wrap layout-gt-sm="row" >
+        <div flex-gt-sm="50">
+          <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+            Checkbox 1: {{ data.cb1 }}
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <div>
+            <md-checkbox
+              ng-model="data.cb2"
+              aria-label="Checkbox 2"
+              ng-true-value="'yup'"
+              ng-false-value="'nope'"
+              class="md-warn md-align-top-left" flex>
+            Checkbox 2 (md-warn)  <br/>
+            <span class="ipsum">
+              Duis placerat lectus et justo mollis, nec sodales orci congue. Vestibulum semper non urna ac suscipit.
+              Vestibulum tempor, ligula id laoreet hendrerit, massa augue iaculis magna,
+              sit amet dapibus tortor ligula non nibh.
+            </span>
+            <br/>
+            {{ data.cb2 }}
+          </md-checkbox>
+          </div>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox ng-disabled="true" aria-label="Disabled checkbox" ng-model="data.cb3">
+            Checkbox: Disabled
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox ng-disabled="true" aria-label="Disabled checked checkbox" ng-model="data.cb4" ng-init="data.cb4=true">
+            Checkbox: Disabled, Checked
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="data.cb5" class="md-primary">
+            Checkbox (md-primary): No Ink
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox md-indeterminate
+              aria-label="Checkbox Indeterminate" class="md-primary">
+            Checkbox: Indeterminate
+          </md-checkbox>
+        </div>
+        <div flex-gt-sm="50">
+          <md-checkbox md-indeterminate aria-label="Checkbox Disabled Indeterminate"
+              ng-disabled="true" class="md-primary">
+            Checkbox: Disabled, Indeterminate
+          </md-checkbox>
+        </div>
+      </div>
+    </fieldset>
+
+  </div>
 </body>
 
 </html>
