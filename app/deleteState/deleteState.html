@@ -1,0 +1,16 @@
+<section>
+    <nav class="navbar navbar-inverse">
+         <div class="container">
+             <ul class="nav navbar-nav">
+                <li><a ui-sref="view">View</a></li>
+                <li><a ui-sref="delete">Delete</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h2>Hello delete state</h2>
+    <display-list data="$ctrl.users"
+        button-name="Delete"
+        button-pressed="$ctrl.deleteUser">
+    </display-list>
+    <h4>User to Delete: {{$ctrl.usertoDelete}}</h4>
+</section>

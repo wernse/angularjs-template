@@ -1,0 +1,16 @@
+<section>
+    <nav class="navbar navbar-inverse">
+         <div class="container">
+             <ul class="nav navbar-nav">
+                <li><a ui-sref="view">View</a></li>
+                <li><a ui-sref="delete">Delete</a></li>
+            </ul>
+        </div>
+    </nav>
+    <h2>Hello view state</h2>
+    <display-list data="$ctrl.users"
+        button-name="View"
+        button-pressed="$ctrl.viewUser">
+    </display-list>
+    <h4>User to View: {{$ctrl.userToView}}</h4>
+</section>.

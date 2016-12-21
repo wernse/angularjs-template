@@ -5,8 +5,8 @@
       'ui.router',
       'ui.bootstrap',
       'templates',
-      'upload',
-      'tableView'
+      'deleteState',
+      'viewState'
     ])
     .config(routeConfig);
 

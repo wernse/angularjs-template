@@ -1,0 +1,13 @@
+<ul style="list-style-type: none;">
+    <li ng-repeat="item in $ctrl.data">
+        <div class="col-md-8">
+            {{item.first_name}}
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-priamry" ng-click="$ctrl.buttonPressed(item)">
+                {{$ctrl.buttonName}}
+                </button>
+        </div>
+        <div class="clear-fix"></div>
+    </li>
+</ul>

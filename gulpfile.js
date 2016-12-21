@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
   concat = require('gulp-concat'),
-  jshint = require('gulp-jshint'),
   uglify = require('gulp-uglify'),
   minifyCss = require('gulp-minify-css'),
   templateCache = require('gulp-angular-templatecache'),
@@ -32,15 +31,15 @@ var appFiles = [
 // define the default task and add the watch task to it
 gulp.task('default', ['watch']);
 
-// configure the jshint task
-gulp.task('jshint', function() {
-  return gulp.src('app/**/*.js')
-    .pipe(jshint({
-      "latedef": "nofunc",
-      "strict": true,
-    }))
-    .pipe(jshint.reporter('jshint-stylish'));
-});
+// // configure the jshint task
+// gulp.task('jshint', function() {
+//   return gulp.src('app/**/*.js')
+//     .pipe(jshint({
+//       "latedef": "nofunc",
+//       "strict": true,
+//     }))
+//     .pipe(jshint.reporter('jshint-stylish'));
+// });
 
 gulp.task('styles', function() {
   gulp.src(['content/css/siteVariables.scss', 'app/**/*.scss'])
@@ -99,7 +98,7 @@ gulp.task('watch', function() {
   })
 
   gulp.watch(['content/css/main.scss', 'app/**/*.scss'], ['styles']);
-  gulp.watch(['app/**/*.js'], ['concatApp', 'jshint']);
+  gulp.watch(['app/**/*.js'], ['concatApp']);
   gulp.watch(['content/js/*.js'], ['concatCore']);
-  gulp.watch('app/**/*.html', ['templates']);
+  gulp.watch('app/**/*.html', ['templates', 'concatApp']);
 });
